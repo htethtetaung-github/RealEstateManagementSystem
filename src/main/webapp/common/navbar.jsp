@@ -15,10 +15,10 @@
       <div class="container">
         <div class="menu-bg-wrap">
           <div class="site-navigation">
-            <a href="index.jsp" class="logo m-0 float-start">Property</a>
+            <a href="property?mode=LIST" class="logo m-0 float-start">Property</a>
 
             <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-              <li class="active"><a href="index.jsp">Home</a></li>
+              <li class="active"><a href="property?mode=LIST">Home</a></li>
               <li class="has-children">
                 <a href="properties.html">Properties</a>
                 <ul class="dropdown">
@@ -29,7 +29,7 @@
               <li><a href="services.jsp">Services</a></li>
               <li><a href="contact.jsp">Contact Us</a></li>
               <li><a href="property-register.jsp">Register Property</a></li>
-              <li><a href="property-list.jsp">PropertyList</a></li>
+              <li><a href="property?mode=PROPERTYLIST">PropertyList</a></li>
               <li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false"><c:out value="${admin.username }"></c:out></a>

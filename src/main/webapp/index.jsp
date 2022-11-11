@@ -64,7 +64,7 @@
 							<c:forEach var="property" items="${propertyList}">
 
 								<div class="property-item">
-									<a href="property-single.html" class="img"> <img
+									<a href="property-detail.jsp" class="img"> <img
 										src="data:image/jpg;base64,${property.base64Image}"
 										alt="Image" class="img-fluid" />
 									</a>
@@ -92,7 +92,7 @@
 												</span>
 											</div>
 
-											<a href="property-single.html"
+											<a href="property-detail.jsp"
 												class="btn btn-primary py-2 px-3">See details</a>
 										</div>
 									</div>
