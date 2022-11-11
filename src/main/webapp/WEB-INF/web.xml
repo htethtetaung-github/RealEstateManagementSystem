@@ -29,4 +29,34 @@
     <servlet-name>AdminController</servlet-name>
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PropertyController</display-name>
+    <servlet-name>PropertyController</servlet-name>
+    <servlet-class>com.real.estate.controller.PropertyController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PropertyController</servlet-name>
+    <url-pattern>/property</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginController</display-name>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>com.real.estate.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginController</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RouteLoginPage</display-name>
+    <servlet-name>RouteLoginPage</servlet-name>
+    <servlet-class>com.real.estate.controller.RouteLoginPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RouteLoginPage</servlet-name>
+    <url-pattern></url-pattern>
+  </servlet-mapping>
 </web-app>

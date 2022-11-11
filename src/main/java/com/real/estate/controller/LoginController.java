@@ -1,10 +1,13 @@
 package com.real.estate.controller;
 
 import jakarta.annotation.Resource;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import javax.sql.DataSource;
@@ -12,12 +15,10 @@ import javax.sql.DataSource;
 import com.real.estate.model.Admin;
 import com.real.estate.model.AdminDAO;
 
-
 /**
- * Servlet implementation class AdminController
+ * Servlet implementation class LoginController
  */
-public class AdminController extends HttpServlet {
-	
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Resource(name = "jdbc/realestate")
 	private DataSource dataSource;
@@ -31,7 +32,7 @@ public class AdminController extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminController() {
+    public LoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,36 +43,48 @@ public class AdminController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mode = request.getParameter("mode");
 		if(mode == null) {
-			mode = "SIGNUP";
+			mode = "LOGIN_PAGE";
 		}
 		
 		switch (mode) {
-		case "SIGNUP":
-			signup(request, response);
+		case "LOGIN_PAGE":
+			loginPage(request,response);
+			break;
+		case "SIGNIN":
+			signin(request,response);
 			break;
 		default:
-			signup(request, response);
+			loginPage(request,response);
 			break;
 		}
+		
 	}
 
-	private void signup(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void signin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String phone    = request.getParameter("phone");
-		String address  = request.getParameter("address");
-		boolean adminOk = Boolean.parseBoolean(request.getParameter("role"));
-		String role = adminOk ? "admin" : "user";
+		String originalPassword = request.getParameter("password");
 		
-		Admin admin = new Admin(username, email, password, phone, address, role);
+		boolean valid = this.adminDAO.isValidAdmin(email, originalPassword);
+		if(valid) {
+			response.sendRedirect("property");
+			Admin admin = this.adminDAO.getAdminByEmail(email);
+			HttpSession session = request.getSession();
+			session.setAttribute("admin",admin);
+		}else {
+			boolean loginFail = true;
+			request.setAttribute("loginFail",loginFail);
+			RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
+			rd.forward(request, response);
+		}
 		
-		int rowEffected = this.adminDAO.createAdmin(admin);
-		
-		if(rowEffected > 0)
-			//System.out.println("Successful");
-			response.sendRedirect("login");
+	}
+
+	private void loginPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean loginFail = false;
+		request.setAttribute("loginFail",loginFail);
+		RequestDispatcher rd = request.getRequestDispatcher("signin.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
