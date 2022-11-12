@@ -12,8 +12,7 @@ import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,6 +24,9 @@ import javax.sql.rowset.serial.SerialException;
 import org.apache.tomcat.jakartaee.commons.io.IOUtils;
 
 import com.real.estate.model.Admin;
+import com.real.estate.model.Order;
+import com.real.estate.model.OrderDAO;
+import com.real.estate.model.OrderDetail;
 import com.real.estate.model.Property;
 import com.real.estate.model.PropertyDAO;
 
@@ -41,10 +43,12 @@ public class PropertyController extends HttpServlet {
 	private DataSource dataSource;
 
 	private PropertyDAO propertyDAO;
+	private OrderDAO orderDAO;
 	
 	@Override
 	public void init() throws ServletException {
 		propertyDAO = new PropertyDAO(dataSource);
+		orderDAO = new OrderDAO(dataSource);
 	}
        
     /**
@@ -88,6 +92,9 @@ public class PropertyController extends HttpServlet {
 		case "SEARCH":
 			searchProperty(request, response);
 			break;
+		case "DETAIL":
+			detailProperty(request, response);
+			break;	
 		case "CREATE":
 			createProperty(request, response);
 			break;
@@ -100,6 +107,15 @@ public class PropertyController extends HttpServlet {
 			break;
 		case "DELETE":
 			deleteProperty(request, response);
+			break;
+		case "ADDORDER":
+			orderProperty(request, response);
+			break;
+		case "ORDERDETAIL":
+			orderDetail(request, response);
+			break;
+		case "DELETEORDER":
+			deleteOrder(request, response);
 			break;
 		default:
 			showPropertyList(request, response);
@@ -144,15 +160,30 @@ public class PropertyController extends HttpServlet {
 		rd.forward(request, response);
 		
 	}
+	private void detailProperty(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		HttpSession session = request.getSession();
+		Admin admin = (Admin) session.getAttribute("admin");
+		request.setAttribute("admin",admin);
+		int id = Integer.parseInt(request.getParameter("id"));
+		Property propertyDetail = this.propertyDAO.getProperty(id);
+		request.setAttribute("propertyDetail", propertyDetail);
+		RequestDispatcher rd = request.getRequestDispatcher("property-detail.jsp");
+		rd.forward(request, response);
+		
+	}
 	private void createProperty(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		Admin admin = (Admin) session.getAttribute("admin");
 		request.setAttribute("admin",admin);
 		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		int price = Integer.parseInt(request.getParameter("price"));
-		String status = request.getParameter("status");
 		String address = request.getParameter("address");
+		String description = request.getParameter("description");
+		String status = request.getParameter("status");
+		String type = request.getParameter("type");
+		int price = Integer.parseInt(request.getParameter("price"));
+		int room = Integer.parseInt(request.getParameter("room"));
+		int bedRoom = Integer.parseInt(request.getParameter("bedRoom"));
+		int area = Integer.parseInt(request.getParameter("area"));
 		
 		InputStream inputStream = null;
         
@@ -170,11 +201,7 @@ public class PropertyController extends HttpServlet {
         catch (SQLException e) {e.printStackTrace();}
 		
         
-        
-        int area = Integer.parseInt(request.getParameter("area"));
-		int room = Integer.parseInt(request.getParameter("room"));
-		
-		Property property = new Property(name, description, price, status, address, image, area, room);
+		Property property = new Property(name, description, price, status, address, image, area, room, bedRoom, type);
 		
 		int rowEffected = this.propertyDAO.createProperty(property);
 		
@@ -207,7 +234,9 @@ public class PropertyController extends HttpServlet {
 		String address = request.getParameter("address");
 		int area = Integer.parseInt(request.getParameter("area"));
 		int room = Integer.parseInt(request.getParameter("room"));
-		Property result = new Property(id, name, description, price, status, address, area, room);
+		int bedRoom = Integer.parseInt(request.getParameter("bedRoom"));
+		String type = request.getParameter("type");
+		Property result = new Property(id, name, description, price, status, address, area, room, bedRoom, type);
 		
 		int rowEffected = this.propertyDAO.updateProperty(result);
 		
@@ -221,6 +250,43 @@ public class PropertyController extends HttpServlet {
 		request.setAttribute("admin",admin);
 		int id = Integer.parseInt(request.getParameter("id"));
 		int rowEffected = this.propertyDAO.deleteProperty(id);
+		
+		if(rowEffected > 0)
+			showPropertyAdminList(request, response);
+	}
+	
+	private void orderProperty(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		HttpSession session = request.getSession();
+		Admin admin = (Admin) session.getAttribute("admin");
+		request.setAttribute("admin",admin);
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		int propertyId = Integer.parseInt(request.getParameter("id"));
+		String message = request.getParameter("message");
+		
+		Order order = new Order(userId, propertyId, message);
+		
+		int rowEffected = this.orderDAO.addOrderProperty(order);
+		
+		if(rowEffected > 0)
+			showPropertyAdminList(request, response);
+		
+	}
+	private void orderDetail(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		HttpSession session = request.getSession();
+		Admin admin = (Admin) session.getAttribute("admin");
+		request.setAttribute("admin",admin);
+		List<OrderDetail> orderList = this.orderDAO.getOrderDetail();
+		request.setAttribute("orderList", orderList);
+		RequestDispatcher rd = request.getRequestDispatcher("order-detail.jsp");
+		rd.forward(request, response);
+		
+	}
+	private void deleteOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		HttpSession session = request.getSession();
+		Admin admin = (Admin) session.getAttribute("admin");
+		request.setAttribute("admin",admin);
+		int id = Integer.parseInt(request.getParameter("id"));
+		int rowEffected = this.orderDAO.getDeleteOrder(id);
 		
 		if(rowEffected > 0)
 			showPropertyAdminList(request, response);

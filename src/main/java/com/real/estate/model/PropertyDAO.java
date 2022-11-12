@@ -24,7 +24,6 @@ public class PropertyDAO {
 	private Statement stmt;
 	private PreparedStatement pStmt;
 	private ResultSet rs;
-	byte[] imgData = null;
 
 	public PropertyDAO(DataSource dataSource) {
 		super();
@@ -48,7 +47,8 @@ public class PropertyDAO {
 			connection = dataSource.getConnection();
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery(
-					"select property_id as id,property_name as name, description, price, property_status as status, address,property_img as photo, area, no_of_rooms as room  from property;");
+					"select property_id as id,property_name as name, description, price, property_status as status, address,property_img as photo, "
+					+ "area, no_of_rooms as room, no_of_bedrooms as bedroom, property_type as type  from property;");
 
 			while (rs.next()) {
 				Blob blob = rs.getBlob("photo");
@@ -67,7 +67,7 @@ public class PropertyDAO {
 
 				propertyList.add(new Property(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
 						rs.getInt("price"), rs.getString("status"), rs.getString("address"), base64Image,
-						rs.getInt("area"), rs.getInt("room")));
+						rs.getInt("area"), rs.getInt("room"),rs.getInt("bedroom"), rs.getString("type")));
 			}
 
 		} catch (SQLException e) {
@@ -87,7 +87,8 @@ public class PropertyDAO {
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery("select property_id as id," + " property_name as name," + " description, price,"
 					+ " property_status as status," + " address,property_img as photo," + " area, no_of_rooms as room"
-					+ " from property " + " where property_status='" + searchItem + "';");
+					+ " no_of_bedrooms as bedroom," + " property_type as type"
+					+ "from property " + " where property_status='" + searchItem + "';");
 
 			while (rs.next()) {
 				Blob blob = rs.getBlob("photo");
@@ -106,7 +107,7 @@ public class PropertyDAO {
 
 				propertyList.add(new Property(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
 						rs.getInt("price"), rs.getString("status"), rs.getString("address"), base64Image,
-						rs.getInt("area"), rs.getInt("room")));
+						rs.getInt("area"), rs.getInt("room"), rs.getInt("bedroom"), rs.getString("type")));
 			}
 
 		} catch (SQLException e) {
@@ -131,7 +132,7 @@ public class PropertyDAO {
 				property = new Property(rs.getInt("property_id"), rs.getString("property_name"),
 						rs.getString("description"), rs.getInt("price"), rs.getString("property_status"),
 						rs.getString("address"), rs.getBlob("property_img"), rs.getInt("area"),
-						rs.getInt("no_of_rooms"));
+						rs.getInt("no_of_rooms"), rs.getInt("no_of_bedrooms"), rs.getString("property_type"));
 			}
 
 		} catch (SQLException e) {
@@ -150,8 +151,8 @@ public class PropertyDAO {
 			connection = dataSource.getConnection();
 
 			pStmt = connection.prepareStatement("INSERT INTO `property` "
-					+ "(`property_name`, `description`, `price`, `property_status`, `address`, `property_img`,`area`,`no_of_rooms` ) "
-					+ "VALUES (?,?,?,?,?,?,?,?);");
+					+ "(`property_name`, `description`, `price`, `property_status`, `address`, `property_img`,`area`,`no_of_rooms`, `no_of_bedrooms`,`property_type`) "
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?);");
 
 			pStmt.setString(1, property.getPropertyName());
 			pStmt.setString(2, property.getDescription());
@@ -161,6 +162,8 @@ public class PropertyDAO {
 			pStmt.setBlob(6, property.getPropertyImg());
 			pStmt.setInt(7, property.getArea());
 			pStmt.setInt(8, property.getRoomNumber());
+			pStmt.setInt(9, property.getBedRoomNumber());
+			pStmt.setString(10, property.getPropertyType());
 
 			rowEffected = pStmt.executeUpdate();
 		} catch (SQLException e) {
@@ -179,16 +182,19 @@ public class PropertyDAO {
 
 			pStmt = connection.prepareStatement("UPDATE `property` SET " + "`property_name` = ?, "
 					+ "`description` = ?, " + "`price` = ?, " + "`property_status` = ?, " + "`address` = ?, "
-					+ "`property_img` = ?, " + "`area` = ? , " + "`no_of_rooms` = ? WHERE (`property_id` = ?);");
+					+ "`area` = ? , " + "`no_of_rooms` = ? , " + "`no_of_bedrooms` = ? , " + "`property_type` = ? WHERE (`property_id` = ?);");
 			pStmt.setString(1, property.getPropertyName());
 			pStmt.setString(2, property.getDescription());
 			pStmt.setInt(3, property.getPrice());
 			pStmt.setString(4, property.getPropertyStatus());
-			pStmt.setString(5, property.getAddress());
-			pStmt.setBlob(6, property.getPropertyImg());
-			pStmt.setInt(7, property.getArea());
-			pStmt.setInt(8, property.getRoomNumber());
-			pStmt.setInt(9, property.getPropertyId());
+			pStmt.setString(5, property.getAddress());/*
+														 * pStmt.setBlob(6, property.getPropertyImg());
+														 */
+			pStmt.setInt(6, property.getArea());
+			pStmt.setInt(7, property.getRoomNumber());
+			pStmt.setInt(8, property.getBedRoomNumber());
+			pStmt.setString(9, property.getPropertyType());
+			pStmt.setInt(10, property.getPropertyId());
 			rowEffected = pStmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

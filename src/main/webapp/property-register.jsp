@@ -18,59 +18,105 @@
 
 				<input type="hidden" name="mode" value="CREATE">
 
-				<div class="mb-3">
-					<label for="name" class="form-label">*Property Name</label> <input
-						type="text" id="name" name="name"
-						placeholder="Enter Property Name" class="form-control"
-						required="required" autofocus>
+				<div class="mb-3 row">
+					<label for="name" class="col-sm-2 col-form-label">Property
+						Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="name" name="name"
+							placeholder="Enter Property Name" class="form-control"
+							required="required" autofocus>
+					</div>
 				</div>
 
-				<div class="mb-3">
-					<label for="description" class="form-label">*Description</label> <input
-						type="text" id="description" name="description"
-						placeholder="Enter Description" class="form-control"
-						required="required" autofocus>
+				<div class="mb-3 row">
+					<label for="address" class="col-sm-2 col-form-label">Address</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="address"
+							name="address" placeholder="Enter Property Address"
+							class="form-control" required="required" autofocus>
+					</div>
 				</div>
 
-				<div class="mb-3">
-					<label for="price" class="form-label">*Price</label> <input
-						type="number" id="price" name="price" placeholder="Enter Price"
-						class="form-control" required="required" autofocus>
+				<div class="mb-3 row">
+					<label for="description" class="col-sm-2 col-form-label">Description</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="description"
+							name="description" placeholder="Enter Property Description"
+							class="form-control" required="required" autofocus>
+					</div>
 				</div>
 
-				<div class="mb-3">
-					<label for="status" class="form-label">*Property Status</label> <input
-						type="text" id="status" name="status"
-						placeholder="Enter Property Status" class="form-control"
-						required="required" autofocus>
+				<div class="mb-3 row g-3">
+					<div class="col-md-2">
+						<label for="status" class="col-sm-6 col-form-label">Status</label>
+					</div>
+					<div class="col-md-3">
+						<select class="form-select" id="status" name="status" aria-label="Select Status">
+							<option value="1" selected>Rent</option>
+							<option value="2">Buy</option>
+						</select>
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-2">
+						<label for="type" class="col-sm-6 col-form-label">Type</label>
+					</div>
+					<div class="col-md-4">
+						<select class="form-select" id="type" name="type" aria-label="Select Type">
+							<option value="1" selected>Appartment</option>
+							<option value="2">Condo</option>
+							<option value="3">Office</option>
+						</select>
+					</div>
 				</div>
 
-				<div class="mb-3">
-					<label for="address" class="form-label">*Address</label> <input
-						type="text" id="address" name="address"
-						placeholder="Enter Address" class="form-control"
-						required="required" autofocus>
+				<div class="mb-3 row">
+					<label for="price" class="col-sm-2 col-form-label">Price</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="price" name="price"
+							placeholder="Enter Property Name" class="form-control"
+							required="required" autofocus>
+					</div>
 				</div>
 
-				<div class="mb-3">
-					<label for="photo" class="form-label">*Property Image</label> <input
-						type="file" id="photo" name="photo"
-						placeholder="Enter Property Image" class="form-control"
-						required="required" autofocus>
+				<div class="mb-3 row g-3">
+					<div class="col-md-2">
+						<label for="room" class="col-sm-6 col-form-label">No of
+							Rooms</label>
+					</div>
+					<div class="col-md-3">
+						<input type="text" class="form-control" id="room" name="room"
+							placeholder="Enter number of room" required="required" autofocus>
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-2">
+						<label for="bedRoom" class="col-sm-6 col-form-label">Bed
+							Rooms</label>
+					</div>
+					<div class="col-md-4">
+						<input type="text" class="form-control" id="bedRoom"
+							name="bedRoom" placeholder="Enter number of bed room" required="required" autofocus>
+					</div>
 				</div>
 
-				<div class="mb-3">
-					<label for="area" class="form-label">*Area</label> <input
-						type="number" id="area" name="area" placeholder="Enter Area"
-						class="form-control" required="required" autofocus>
+				<div class="mb-3 row">
+					<label for="area" class="col-sm-2 col-form-label">Area</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="area" name="area"
+							placeholder="Enter Property Name" class="form-control"
+							required="required" autofocus>
+					</div>
 				</div>
 
-				<div class="mb-3">
-					<label for="room" class="form-label">*Number of Rooms</label> <input
-						type="number" id="room" name="room"
-						placeholder="Enter Number of Rooms" class="form-control"
-						required="required" autofocus>
+				<div class="mb-3 row">
+					<label for="photo" class="col-sm-2 col-form-label">Property
+						Image</label>
+					<div class="col-sm-10">
+						<input type="file" class="form-control" id="photo" name="photo"
+							placeholder="Enter Property Name" class="form-control"
+							required="required" autofocus>
+					</div>
 				</div>
+
 
 				<div class="mb-3">
 					<div class="col-sm-9 col-sm-offset-3">

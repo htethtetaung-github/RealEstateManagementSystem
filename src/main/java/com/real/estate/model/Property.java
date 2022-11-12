@@ -14,8 +14,13 @@ public class Property {
 	private Blob propertyImg;
 	private int area;
 	private int roomNumber;
+	private int bedRoomNumber;
+	private String propertyType;
+	
+	
 	public Property(int propertyId, String propertyName, String description, int price, String propertyStatus,
-			String address, Blob propertyImg, int area, int roomNumber) {
+			String address, Blob propertyImg, int area, int roomNumber, int bedRoomNumber,
+			String propertyType) {
 		super();
 		this.propertyId = propertyId;
 		this.propertyName = propertyName;
@@ -26,9 +31,12 @@ public class Property {
 		this.propertyImg = propertyImg;
 		this.area = area;
 		this.roomNumber = roomNumber;
+		this.bedRoomNumber = bedRoomNumber;
+		this.propertyType = propertyType;
 	}
+	
 	public Property(String propertyName, String description, int price, String propertyStatus, String address,
-			Blob propertyImg, int area, int roomNumber) {
+			Blob propertyImg, int area, int roomNumber, int bedRoomNumber, String propertyType) {
 		super();
 		this.propertyName = propertyName;
 		this.description = description;
@@ -38,11 +46,14 @@ public class Property {
 		this.propertyImg = propertyImg;
 		this.area = area;
 		this.roomNumber = roomNumber;
+		this.bedRoomNumber = bedRoomNumber;
+		this.propertyType = propertyType;
 	}
 	
 	
+
 	public Property(int propertyId, String propertyName, String description, int price, String propertyStatus,
-			String address, int area, int roomNumber) {
+			String address, int area, int roomNumber, int bedRoomNumber, String propertyType) {
 		super();
 		this.propertyId = propertyId;
 		this.propertyName = propertyName;
@@ -52,7 +63,26 @@ public class Property {
 		this.address = address;
 		this.area = area;
 		this.roomNumber = roomNumber;
+		this.bedRoomNumber = bedRoomNumber;
+		this.propertyType = propertyType;
 	}
+
+	public Property(int propertyId, String propertyName, String description, int price, String propertyStatus, String address,
+			String base64Image, int area, int roomNumber, int bedRoomNumber, String propertyType) {
+		super();
+		this.propertyId = propertyId;
+		this.propertyName = propertyName;
+		this.description = description;
+		this.price = price;
+		this.propertyStatus = propertyStatus;
+		this.address = address;
+		this.base64Image = base64Image;
+		this.area = area;
+		this.roomNumber = roomNumber;
+		this.bedRoomNumber = bedRoomNumber;
+		this.propertyType = propertyType;
+	}
+
 	public int getPropertyId() {
 		return propertyId;
 	}
@@ -114,47 +144,25 @@ public class Property {
 	public void setBase64Image(String base64Image) {
 		this.base64Image = base64Image;
 	}
+	public int getBedRoomNumber() {
+		return bedRoomNumber;
+	}
+	public void setBedRoomNumber(int bedRoomNumber) {
+		this.bedRoomNumber = bedRoomNumber;
+	}
+	public String getPropertyType() {
+		return propertyType;
+	}
+	public void setPropertyType(String propertyType) {
+		this.propertyType = propertyType;
+	}
+
 	@Override
 	public String toString() {
 		return "Property [propertyId=" + propertyId + ", propertyName=" + propertyName + ", description=" + description
-				+ ", price=" + price + ", propertyStatus=" + propertyStatus + ", address=" + address + ", propertyImg="
-				+ propertyImg + ", area=" + area + ", roomNumber=" + roomNumber + "]";
-	}
-	public Property(String propertyName, String description, int price, String propertyStatus, String address, int area,
-			int roomNumber) {
-		super();
-		this.propertyName = propertyName;
-		this.description = description;
-		this.price = price;
-		this.propertyStatus = propertyStatus;
-		this.address = address;
-		this.area = area;
-		this.roomNumber = roomNumber;
-	}
-	public Property(int propertyId, String propertyName, String description, int price, String propertyStatus,
-			String address, String base64Image, int area, int roomNumber) {
-		super();
-		this.propertyId = propertyId;
-		this.propertyName = propertyName;
-		this.description = description;
-		this.price = price;
-		this.propertyStatus = propertyStatus;
-		this.address = address;
-		this.base64Image = base64Image;
-		this.area = area;
-		this.roomNumber = roomNumber;
-	}
-	public Property(String propertyName, String description, int price, String propertyStatus,
-			String address, String base64Image, int area, int roomNumber) {
-		super();
-		this.propertyName = propertyName;
-		this.description = description;
-		this.price = price;
-		this.propertyStatus = propertyStatus;
-		this.address = address;
-		this.base64Image = base64Image;
-		this.area = area;
-		this.roomNumber = roomNumber;
+				+ ", price=" + price + ", propertyStatus=" + propertyStatus + ", address=" + address + ", base64Image="
+				+ base64Image + ", propertyImg=" + propertyImg + ", area=" + area + ", roomNumber=" + roomNumber
+				+ ", bedRoomNumber=" + bedRoomNumber + ", propertyType=" + propertyType + "]";
 	}
 	
 		

@@ -46,7 +46,7 @@ public class AdminDAO {
 			rs = stmt.executeQuery("select * from admin where email='" + email + "';");
 
 			while (rs.next()) {
-				admin = new Admin(rs.getString("username"), rs.getString("email"), rs.getString("password"),
+				admin = new Admin(rs.getInt("id"),rs.getString("username"), rs.getString("email"), rs.getString("password"),
 						rs.getString("phone"), rs.getString("address"), rs.getString("role"));
 			}
 

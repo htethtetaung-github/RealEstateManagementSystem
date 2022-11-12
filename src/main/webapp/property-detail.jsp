@@ -27,8 +27,7 @@
 							<li class="breadcrumb-item"><a href="property-detail.jsp">Properties</a>
 							</li>
 							<li class="breadcrumb-item active text-white-50"
-								aria-current="page">5232 California AVE.
-								21BC</li>
+								aria-current="page">5232 California AVE. 21BC</li>
 						</ol>
 					</nav>
 				</div>
@@ -49,39 +48,89 @@
 					</div>
 				</div>
 				<div class="col-lg-4">
-					<h2 class="heading text-primary">5232 California Ave. 21BC</h2>
-					<p class="meta">California, United States</p>
-					<p class="text-black-50">Lorem ipsum dolor sit amet
-						consectetur, adipisicing elit. Ratione laborum quo quos omnis sed
-						magnam id, ducimus saepe, debitis error earum, iste dicta odio est
-						sint dolorem magni animi tenetur.</p>
-					<p class="text-black-50">Perferendis eligendi reprehenderit,
-						assumenda molestias nisi eius iste reiciendis porro tenetur in,
-						repudiandae amet libero. Doloremque, reprehenderit cupiditate
-						error laudantium qui, esse quam debitis, eum cumque perferendis,
-						illum harum expedita.</p>
 
-					<div class="d-block agent-box p-5">
-						<div class="img mb-4">
-							<img src="images/person_2-min.jpg" alt="Image" class="img-fluid" />
+					<%-- <c:forEach var="property" items="${propertyDetail}"> --%>
+						<h2 class="heading text-primary">
+							<c:out value="${propertyDetail.propertyName }"></c:out>
+						</h2>
+						<p class="meta">
+							<c:out value="${propertyDetail.address }"></c:out>
+						</p>
+
+						<div class="property-content">
+							<div>
+								<div class="specs d-flex mb-4">
+									<span class="d-block d-flex align-items-center"> <span
+										class="icon-dollar me-2"></span> <span class="caption">
+											<c:out value="${propertyDetail.price }"></c:out>
+									</span>
+									</span> &nbsp;&nbsp; <span class="d-block d-flex align-items-center">
+										<span class="icon-bed me-2"> </span> <span class="caption">
+											<c:out value="${propertyDetail.roomNumber }"></c:out>
+									</span>
+									</span> &nbsp;&nbsp; <span class="d-block d-flex align-items-center">
+										<span class="icon-bath me-2"> </span> <span class="caption">
+											<c:out value="${propertyDetail.bedRoomNumber }"></c:out>
+									</span>
+									</span>
+								</div>
+
+							</div>
 						</div>
-						<div class="text">
-							<h3 class="mb-0">Alicia Huston</h3>
-							<div class="meta mb-3">Real Estate</div>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Ratione laborum quo quos omnis sed magnam id ducimus saepe</p>
-							<ul class="list-unstyled social dark-hover d-flex">
-								<li class="me-1"><a href="#"><span
-										class="icon-instagram"></span></a></li>
-								<li class="me-1"><a href="#"><span class="icon-twitter"></span></a>
+
+						<p class="text-black-50">
+							<c:out value="${propertyDetail.description }"></c:out>
+						</p>
+						<div class="d-block agent-box p-2">
+							<ul>
+								<li>100% Bank Transfer</li>
+								<li>Area : <c:out value="${propertyDetail.area }"></c:out> SqFt
 								</li>
-								<li class="me-1"><a href="#"><span
-										class="icon-facebook"></span></a></li>
-								<li class="me-1"><a href="#"><span
-										class="icon-linkedin"></span></a></li>
+								<li>Master BedRoom :<c:out value="${propertyDetail.roomNumber }"></c:out>
+									rooms
+								</li>
+								<li>Living Room</li>
+								<li>Dinning Room</li>
+								<li>Bath Room :<c:out value="${propertyDetail.bedRoomNumber }"></c:out>
+									rooms
+								</li>
 							</ul>
 						</div>
-					</div>
+					
+					<%-- </c:forEach> --%>
+						<br>
+						<form action="property" method="post">
+							<input type="hidden" name="mode" value="ADDORDER"> 
+							<input type="hidden" name="userId" value="${admin.id}">
+							<input type="hidden" name="id" value="${propertyDetail.propertyId}">							<div class="row">
+								<div class="col-6 mb-3">
+									<label for="name" class="col-sm-2 col-form-label">UserName</label>
+									<input type="text" class="form-control" id="name"
+										value="<c:out value="${admin.username }"></c:out>"
+										placeholder="Your Name" />
+								</div>
+								<div class="col-6 mb-3">
+									<label for="phone" class="col-sm-2 col-form-label">Phone</label>
+									<input type="text" class="form-control" id="phone"
+										value="<c:out value="${admin.phone }"></c:out>"
+										placeholder="Your Phone" />
+								</div>
+								<div class="col-12 mb-3">
+									<label for="email" class="col-sm-2 col-form-label">Email</label>
+									<input type="text" class="form-control" id="email"
+										value="<c:out value="${admin.email }"></c:out>"
+										placeholder="Your Email" />
+								</div>
+								<div class="col-12 mb-3">
+									<textarea name="message" cols="30" rows="7" class="form-control"
+									 id="message" placeholder="Message"></textarea>
+								</div>
+
+								<div class="col-12">
+									<button type="submit" class="btn btn-primary">Send Now</button>
+								</div>
+							</div>
+						</form>
 				</div>
 			</div>
 		</div>

@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <c:import url="common/header.html"></c:import>
-<title>Property List</title>
+<title>Order List</title>
 </head>
 <body>
 	<!-- Responsive navbar-->
@@ -24,9 +24,10 @@
 						<th>Price</th>
 						<th>Status</th>
 						<th>Address</th>
-						<th>Image</th>
 						<th>Area</th>
 						<th>NumberOfRooms</th>
+						<th>NumberOfBedRooms</th>
+						<th>PropertyType</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,9 +48,10 @@
 							<td><c:out value="${property.description}"></c:out></td>
 							<td><c:out value="${property.price}"></c:out></td>
 							<td><c:out value="${property.propertyStatus}"></c:out></td>
-							<td><c:out value="${property.propertyImg}"></c:out></td>
 							<td><c:out value="${property.area}"></c:out></td>
 							<td><c:out value="${property.roomNumber}"></c:out></td>
+							<td><c:out value="${property.bedRoomNumber}"></c:out></td>
+							<td><c:out value="${property.propertyType}"></c:out></td>
 							<td><a href="${updateLink }" class="btn btn-primary">Edit</a>
 								<a href="${deleteLink }" id="delete" class="btn btn-danger"
 								onclick="return confirm('Are you sure to delete this property?');">Delete</a>
@@ -60,14 +62,7 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<th>ID</th>
-						<th>Major</th>
-						<th>Year</th>
-						<th>SeatNo</th>
-						<th>Name</th>
-						<th>Grade</th>
-						<th>Qualify</th>
-						<th>Action</th>
+						
 					</tr>
 				</tfoot>
 			</table>

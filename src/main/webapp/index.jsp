@@ -63,6 +63,12 @@
 
 							<c:forEach var="property" items="${propertyList}">
 
+								<c:url var="detailLink" value="property">
+									<c:param name="mode" value="DETAIL"></c:param>
+									<c:param name="id" value="${property.propertyId}"></c:param>
+								</c:url>
+
+
 								<div class="property-item">
 									<a href="property-detail.jsp" class="img"> <img
 										src="data:image/jpg;base64,${property.base64Image}"
@@ -70,30 +76,35 @@
 									</a>
 
 									<div class="property-content">
-										<div class="mb-2">
-											<span>aa</span>
-										</div>
 										<div>
-											<span class="d-block mb-2 text-black-50"><c:out
+											<span class="d-block mb-2 text-black-50"> <c:out
 													value="${property.propertyId }"></c:out></span> <span
-												class="city d-block mb-3"><c:out
+												class="city d-block mb-3"> <c:out
 													value="${property.propertyName }"></c:out></span>
+													
+											<span class="city d-block mb-2"> <c:out
+													value="${property.description }"></c:out></span>
 
 											<div class="specs d-flex mb-4">
-												<span class="d-block d-flex align-items-center me-3">
-													<span class="icon-bed me-2"></span> <span class="caption"><c:out
-															value="${property.description }"></c:out></span>
-												</span> <span class="d-block d-flex align-items-center"> <span
-													class="icon-bath me-2"></span> <span class="caption"><c:out
-															value="${property.price }"></c:out></span>
-												</span> <span class="d-block d-flex align-items-center"> <span
-													class="icon-bath me-2"></span> <span class="caption"><c:out
-															value="${property.roomNumber }"></c:out></span>
+												<span class="d-block d-flex align-items-center"> <span
+													class="icon-dollar me-2"></span> <span class="caption">
+														<c:out value="${property.price }"></c:out>
+												</span>
+												</span> &nbsp;&nbsp;
+												<span class="d-block d-flex align-items-center"> 
+												<span class="icon-bed me-2"> </span> <span class="caption">
+														<c:out value="${property.roomNumber }"></c:out>
+												</span>
+												</span> &nbsp;&nbsp;
+												<span class="d-block d-flex align-items-center"> 
+												<span class="icon-bath me-2"> </span> <span class="caption">
+														<c:out value="${property.bedRoomNumber }"></c:out>
+												</span>
 												</span>
 											</div>
 
-											<a href="property-detail.jsp"
-												class="btn btn-primary py-2 px-3">See details</a>
+											<a href="${detailLink }" class="btn btn-primary py-2 px-3">See
+												details</a>
 										</div>
 									</div>
 								</div>

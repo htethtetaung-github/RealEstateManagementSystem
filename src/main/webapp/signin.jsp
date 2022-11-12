@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>RealEstate</title>
 <link href="css/signin.css" rel="stylesheet" />
 <script
 	src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'></script>
@@ -30,12 +30,7 @@
 							<form action="login" method="post">
 
 								<input type="hidden" name="mode" value="SIGNIN">
-								<c:if test="${loginFail}">
-									<div class="mb-3">
-										<span class="alert alert-danger"> Username or password
-											is incorrect</span>
-									</div>
-								</c:if>
+
 								<div class="login">
 									<div class="group">
 										<label for="email" class="label">Email</label> <input
@@ -56,6 +51,12 @@
 										<input type="submit" class="button" value="Sign In"> <input
 											type="reset" class="button" value="Reset">
 									</div>
+									<c:if test="${loginFail}">
+										<div class="mb-3">
+											<span class="alert alert-danger"> Username or password
+												is incorrect</span>
+										</div>
+									</c:if>
 									<div class="hr"></div>
 									<div class="foot">
 										<a href="#">Forgot Password?</a>
