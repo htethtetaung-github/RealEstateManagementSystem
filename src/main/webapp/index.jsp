@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
-	#p {
+	#rent1, #rent2, #rent3 {
         display: none;
      }
 </style>
@@ -63,9 +63,9 @@
 								<option value="200000">2 Laks</option>
 								<option value="600000">6 Laks</option>
 								<option value="1000000">10 Laks</option>
-								<option value="10000000" id ="p">100 Laks</option>
-								<option value="60000000" id ="p">600 Laks</option>
-								<option value="100000000" id ="p">1000 Laks</option>
+								<option value="10000000" id ="rent1">100 Laks</option>
+								<option value="60000000" id ="rent2">600 Laks</option>
+								<option value="100000000" id ="rent3">1000 Laks</option>
 							</select>
 						</div>
 						&nbsp;&nbsp;
@@ -112,9 +112,8 @@
 
 									<div class="property-content">
 										<div>
-											<span class="d-block mb-2 text-black-50"> <c:out
-													value="${property.propertyId }"></c:out></span> <span
-												class="city d-block mb-3"> <c:out
+											<input type="hidden" value="${property.propertyId }"/>												
+											<span class="city d-block mb-3"> <c:out
 													value="${property.propertyName }"></c:out></span> <span
 												class="city d-block mb-2"> <c:out
 													value="${property.description }"></c:out></span>
@@ -161,7 +160,9 @@
 	<script>	 
 		 function priceChange() {
 		        const box = document.getElementById("status").value;
-		        document.getElementById("p").style.display = box == 2 ? 'block' : 'none';
+		        document.getElementById("rent1").style.display = box == 2 ? 'block' : 'none';
+		        document.getElementById("rent2").style.display = box == 2 ? 'block' : 'none';
+		        document.getElementById("rent3").style.display = box == 2 ? 'block' : 'none';
 		         
 		   }
 	</script>

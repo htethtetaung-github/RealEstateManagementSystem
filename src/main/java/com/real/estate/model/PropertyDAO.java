@@ -67,7 +67,7 @@ public class PropertyDAO {
 
 				propertyList.add(new Property(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
 						rs.getInt("price"), rs.getString("status"), rs.getString("address"), base64Image,
-						rs.getInt("area"), rs.getInt("room"),rs.getInt("bedroom"), rs.getString("type")));
+						rs.getString("area"), rs.getInt("room"),rs.getInt("bedroom"), rs.getString("type")));
 			}
 
 		} catch (SQLException e) {
@@ -110,7 +110,7 @@ public class PropertyDAO {
 
 				propertyList.add(new Property(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
 						rs.getInt("price"), rs.getString("status"), rs.getString("address"), base64Image,
-						rs.getInt("area"), rs.getInt("room"), rs.getInt("bedroom"), rs.getString("type")));
+						rs.getString("area"), rs.getInt("room"), rs.getInt("bedroom"), rs.getString("type")));
 			}
 
 		} catch (SQLException e) {
@@ -134,7 +134,7 @@ public class PropertyDAO {
 
 				property = new Property(rs.getInt("property_id"), rs.getString("property_name"),
 						rs.getString("description"), rs.getInt("price"), rs.getString("property_status"),
-						rs.getString("address"), rs.getBlob("property_img"), rs.getInt("area"),
+						rs.getString("address"), rs.getBlob("property_img"), rs.getString("area"),
 						rs.getInt("no_of_rooms"), rs.getInt("no_of_bedrooms"), rs.getString("property_type"));
 			}
 
@@ -163,7 +163,7 @@ public class PropertyDAO {
 			pStmt.setString(4, property.getPropertyStatus());
 			pStmt.setString(5, property.getAddress());
 			pStmt.setBlob(6, property.getPropertyImg());
-			pStmt.setInt(7, property.getArea());
+			pStmt.setString(7, property.getArea());
 			pStmt.setInt(8, property.getRoomNumber());
 			pStmt.setInt(9, property.getBedRoomNumber());
 			pStmt.setString(10, property.getPropertyType());
@@ -191,7 +191,7 @@ public class PropertyDAO {
 			pStmt.setInt(3, property.getPrice());
 			pStmt.setString(4, property.getPropertyStatus());
 			pStmt.setString(5, property.getAddress());
-			pStmt.setInt(6, property.getArea());
+			pStmt.setString(6, property.getArea());
 			pStmt.setInt(7, property.getRoomNumber());
 			pStmt.setInt(8, property.getBedRoomNumber());
 			pStmt.setString(9, property.getPropertyType());

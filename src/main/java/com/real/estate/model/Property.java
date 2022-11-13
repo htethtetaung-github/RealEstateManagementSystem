@@ -12,14 +12,14 @@ public class Property {
 	private String address;
 	private String base64Image;
 	private Blob propertyImg;
-	private int area;
+	private String area;
 	private int roomNumber;
 	private int bedRoomNumber;
 	private String propertyType;
 	
 	
 	public Property(int propertyId, String propertyName, String description, int price, String propertyStatus,
-			String address, Blob propertyImg, int area, int roomNumber, int bedRoomNumber,
+			String address, Blob propertyImg, String area, int roomNumber, int bedRoomNumber,
 			String propertyType) {
 		super();
 		this.propertyId = propertyId;
@@ -36,7 +36,7 @@ public class Property {
 	}
 	
 	public Property(String propertyName, String description, int price, String propertyStatus, String address,
-			Blob propertyImg, int area, int roomNumber, int bedRoomNumber, String propertyType) {
+			Blob propertyImg, String area, int roomNumber, int bedRoomNumber, String propertyType) {
 		super();
 		this.propertyName = propertyName;
 		this.description = description;
@@ -53,7 +53,7 @@ public class Property {
 	
 
 	public Property(int propertyId, String propertyName, String description, int price, String propertyStatus,
-			String address, int area, int roomNumber, int bedRoomNumber, String propertyType) {
+			String address, String area, int roomNumber, int bedRoomNumber, String propertyType) {
 		super();
 		this.propertyId = propertyId;
 		this.propertyName = propertyName;
@@ -68,7 +68,7 @@ public class Property {
 	}
 
 	public Property(int propertyId, String propertyName, String description, int price, String propertyStatus, String address,
-			String base64Image, int area, int roomNumber, int bedRoomNumber, String propertyType) {
+			String base64Image, String area, int roomNumber, int bedRoomNumber, String propertyType) {
 		super();
 		this.propertyId = propertyId;
 		this.propertyName = propertyName;
@@ -125,10 +125,10 @@ public class Property {
 	public void setPropertyImg(Blob propertyImg) {
 		this.propertyImg = propertyImg;
 	}
-	public int getArea() {
+	public String getArea() {
 		return area;
 	}
-	public void setArea(int area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
 	public int getRoomNumber() {

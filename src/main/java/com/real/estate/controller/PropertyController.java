@@ -185,7 +185,7 @@ public class PropertyController extends HttpServlet {
 		int price = Integer.parseInt(request.getParameter("price"));
 		int room = Integer.parseInt(request.getParameter("room"));
 		int bedRoom = Integer.parseInt(request.getParameter("bedRoom"));
-		int area = Integer.parseInt(request.getParameter("area"));
+		String area = request.getParameter("area");
 		
 		InputStream inputStream = null;
         
@@ -234,7 +234,7 @@ public class PropertyController extends HttpServlet {
 		int price = Integer.parseInt(request.getParameter("price"));
 		String status = request.getParameter("status");
 		String address = request.getParameter("address");
-		int area = Integer.parseInt(request.getParameter("area"));
+		String area = request.getParameter("area");
 		int room = Integer.parseInt(request.getParameter("room"));
 		int bedRoom = Integer.parseInt(request.getParameter("bedRoom"));
 		String type = request.getParameter("type");
