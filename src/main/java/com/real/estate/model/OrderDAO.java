@@ -21,7 +21,6 @@ public class OrderDAO {
 	private PreparedStatement pStmt;
 	private ResultSet rs;
 	
-
 	public OrderDAO(DataSource dataSource) {
 		super();
 		this.dataSource = dataSource;
@@ -65,7 +64,7 @@ public class OrderDAO {
 			connection = dataSource.getConnection();
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery(
-					"SELECT t2.username, t2.email, t3.property_name, t3.description, t3.area, t3.price, t3.no_of_rooms as roomNumber,"
+					"SELECT t1.id, t2.username, t2.email, t3.property_name, t3.description, t3.area, t3.price, t3.no_of_rooms as roomNumber,"
 					+ " t3.no_of_bedrooms as bedRoomNumber, t1.message "
 					+ "FROM realestatedb.order t1 "
 					+ "INNER JOIN realestatedb.admin t2  "
@@ -75,7 +74,7 @@ public class OrderDAO {
 
 			while (rs.next()) {
 
-				orderList.add(new OrderDetail(rs.getString("username"), rs.getString("email"),
+				orderList.add(new OrderDetail(rs.getInt("id"), rs.getString("username"), rs.getString("email"),
 						rs.getString("property_name"), rs.getString("description"), rs.getInt("area"), rs.getInt("price"),
 						rs.getInt("roomNumber"), rs.getInt("bedRoomNumber"),rs.getString("message")));
 			}
@@ -92,10 +91,12 @@ public class OrderDAO {
 	}
 	
 	public int getDeleteOrder(int id) {
+		
+		System.out.println("Id" + id);
 		int rowEffected = 0;
 		try {
 			connection = dataSource.getConnection();
-			pStmt = connection.prepareStatement("delete from order where id = ?;");
+			pStmt = connection.prepareStatement("delete from realestatedb.order where (`id` = ?);");
 			pStmt.setInt(1, id);
 			rowEffected = pStmt.executeUpdate();
 

@@ -153,8 +153,10 @@ public class PropertyController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Admin admin = (Admin) session.getAttribute("admin");
 		request.setAttribute("admin",admin);
-		String searchName = request.getParameter("propertySearch");
-		List<Property> propertyList = this.propertyDAO.getPropertySearchList(searchName);
+		int price = Integer.parseInt(request.getParameter("price"));
+		int status = Integer.parseInt(request.getParameter("status"));
+		int type = Integer.parseInt(request.getParameter("type"));
+		List<Property> propertyList = this.propertyDAO.getPropertySearchList(price, status, type);
 		request.setAttribute("propertyList", propertyList);
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
@@ -289,7 +291,7 @@ public class PropertyController extends HttpServlet {
 		int rowEffected = this.orderDAO.getDeleteOrder(id);
 		
 		if(rowEffected > 0)
-			showPropertyAdminList(request, response);
+			orderDetail(request, response);
 	}
 	 
 	/**

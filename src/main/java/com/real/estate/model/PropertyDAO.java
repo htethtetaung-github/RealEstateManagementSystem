@@ -80,15 +80,18 @@ public class PropertyDAO {
 
 	}
 
-	public List<Property> getPropertySearchList(String searchItem) throws IOException {
+	public List<Property> getPropertySearchList(int price, int status, int type) throws IOException {
 		List<Property> propertyList = new ArrayList<>();
 		try {
 			connection = dataSource.getConnection();
 			stmt = connection.createStatement();
-			rs = stmt.executeQuery("select property_id as id," + " property_name as name," + " description, price,"
-					+ " property_status as status," + " address,property_img as photo," + " area, no_of_rooms as room"
-					+ " no_of_bedrooms as bedroom," + " property_type as type"
-					+ "from property " + " where property_status='" + searchItem + "';");
+			rs = stmt.executeQuery("select property_id as id, property_name as name, description, price,"
+					+ " property_status as status,"
+					+ " address, property_img as photo,"
+					+ " area,"
+					+ " no_of_rooms as room,"
+					+ " no_of_bedrooms as bedroom," 
+					+ " property_type as type from property where price <='"+price+"' AND property_status = '"+status+"' AND property_type = '"+type+"';");
 
 			while (rs.next()) {
 				Blob blob = rs.getBlob("photo");
@@ -187,9 +190,7 @@ public class PropertyDAO {
 			pStmt.setString(2, property.getDescription());
 			pStmt.setInt(3, property.getPrice());
 			pStmt.setString(4, property.getPropertyStatus());
-			pStmt.setString(5, property.getAddress());/*
-														 * pStmt.setBlob(6, property.getPropertyImg());
-														 */
+			pStmt.setString(5, property.getAddress());
 			pStmt.setInt(6, property.getArea());
 			pStmt.setInt(7, property.getRoomNumber());
 			pStmt.setInt(8, property.getBedRoomNumber());

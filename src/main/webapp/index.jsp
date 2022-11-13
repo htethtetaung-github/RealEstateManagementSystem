@@ -7,6 +7,13 @@
 <head>
 <c:import url="common/header.html"></c:import>
 <title>Home Page</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+	#p {
+        display: none;
+     }
+</style>
 </head>
 
 <body>
@@ -31,10 +38,38 @@
 					<form action="property" method="post"
 						class="narrow-w form-search d-flex align-items-stretch mb-3"
 						data-aos="fade-up" data-aos-delay="200">
-						<input type="hidden" name="mode" value="SEARCH"> <input
-							type="text" name="propertySearch" class="form-control px-4"
-							placeholder="Your Property Status such as Rent , Sell or Buy..." />
-						<button type="submit" class="btn btn-primary">Search</button>
+						<input type="hidden" name="mode" value="SEARCH">
+						
+						<div>
+							<select id="status" name="status" class="selectpicker  py-2 px-3 show-tick" onchange="priceChange()">
+								<!-- <option value="0" disabled selected>Choose Status</option> -->
+								<option value="1">Rent</option>
+								<option value="2">Buy</option>
+							</select>
+						</div>
+						&nbsp;&nbsp;
+						<div>
+							<select name="type" class="selectpicker  py-2 px-3 show-tick">
+								<!-- <option value="0" disabled selected>Choose Type</option> -->
+								<option value="1">Appartment</option>
+								<option value="2">Condo</option>
+								<option value="3">Office</option>
+							</select>
+						</div>
+						&nbsp;&nbsp;
+						<div>
+							<select name="price" class="selectpicker  py-2 px-3 show-tick">
+								<!-- <option value="0" disabled selected>Choose Price</option> -->
+								<option value="200000">2 Laks</option>
+								<option value="600000">6 Laks</option>
+								<option value="1000000">10 Laks</option>
+								<option value="10000000" id ="p">100 Laks</option>
+								<option value="60000000" id ="p">600 Laks</option>
+								<option value="100000000" id ="p">1000 Laks</option>
+							</select>
+						</div>
+						&nbsp;&nbsp;
+						<button type="submit" class="btn btn-primary py-2 px-3">Search</button>
 					</form>
 				</div>
 			</div>
@@ -80,9 +115,8 @@
 											<span class="d-block mb-2 text-black-50"> <c:out
 													value="${property.propertyId }"></c:out></span> <span
 												class="city d-block mb-3"> <c:out
-													value="${property.propertyName }"></c:out></span>
-													
-											<span class="city d-block mb-2"> <c:out
+													value="${property.propertyName }"></c:out></span> <span
+												class="city d-block mb-2"> <c:out
 													value="${property.description }"></c:out></span>
 
 											<div class="specs d-flex mb-4">
@@ -90,14 +124,14 @@
 													class="icon-dollar me-2"></span> <span class="caption">
 														<c:out value="${property.price }"></c:out>
 												</span>
-												</span> &nbsp;&nbsp;
-												<span class="d-block d-flex align-items-center"> 
-												<span class="icon-bed me-2"> </span> <span class="caption">
+												</span> &nbsp;&nbsp; <span
+													class="d-block d-flex align-items-center"> <span
+													class="icon-bed me-2"> </span> <span class="caption">
 														<c:out value="${property.roomNumber }"></c:out>
 												</span>
-												</span> &nbsp;&nbsp;
-												<span class="d-block d-flex align-items-center"> 
-												<span class="icon-bath me-2"> </span> <span class="caption">
+												</span> &nbsp;&nbsp; <span
+													class="d-block d-flex align-items-center"> <span
+													class="icon-bath me-2"> </span> <span class="caption">
 														<c:out value="${property.bedRoomNumber }"></c:out>
 												</span>
 												</span>
@@ -124,7 +158,13 @@
 			</div>
 		</div>
 	</div>
-
+	<script>	 
+		 function priceChange() {
+		        const box = document.getElementById("status").value;
+		        document.getElementById("p").style.display = box == 2 ? 'block' : 'none';
+		         
+		   }
+	</script>
 	<c:import url="common/service.html"></c:import>
 
 	<!-- Footer Java Script -->

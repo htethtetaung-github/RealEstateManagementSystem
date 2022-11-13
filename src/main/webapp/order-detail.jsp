@@ -30,13 +30,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="property" items="${orderList}">
+					<c:forEach var="order" items="${orderList}">
 						
-						<c:url var="deleteLink" value="order">
+						<c:url var="deleteLink" value="property">
 							<c:param name="mode" value="DELETEORDER"></c:param>
 							<c:param name="id" value="${order.orderId}"></c:param>
 						</c:url>
-
 						<tr>
 							<td><c:out value="${order.userName}"></c:out></td>
 							<td><c:out value="${order.email}"></c:out></td>

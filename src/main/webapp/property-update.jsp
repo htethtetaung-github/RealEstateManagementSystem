@@ -68,7 +68,7 @@
 					<div class="col-md-3">
 						<select class="form-select" id="status" name="status" aria-label="Select Status">
 						<option value="1" ${property.propertyStatus == 1 ? "selected" : ""}>Rent</option>
-						<option value="1" ${property.propertyStatus == 2 ? "selected" : ""}>Buy</option>
+						<option value="2" ${property.propertyStatus == 2 ? "selected" : ""}>Buy</option>
 						
 						</select>
 					</div>
@@ -126,18 +126,7 @@
 							required="required" autofocus>
 					</div>
 				</div>
-
-				<%-- <div class="mb-3 row">
-					<label for="photo" class="col-sm-2 col-form-label">Property
-						Image</label>
-					<div class="col-sm-10">
-						<input type="file" class="form-control" id="photo" name="photo"
-							value="${property.propertyImg}"
-							placeholder="Enter Property Name" class="form-control"
-							required="required" autofocus>
-					</div>
-				</div> --%>
-
+				
 				<div class="mb-3">
 					<div class="col-sm-9 col-sm-offset-3">
 						<span class="help-block">*Required fields</span>
