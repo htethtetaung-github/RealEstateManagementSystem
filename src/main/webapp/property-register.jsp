@@ -10,11 +10,12 @@
 <body>
 	<!-- Responsive navbar-->
 	<c:import url="common/navbar.jsp"></c:import>
-
+<br><br>
 	<div class="section">
 		<div class="container">
 			<form action="property" method="post" enctype="multipart/form-data">
-				<h2 class="text-center">Property Registration</h2>
+				
+				<div><h2 class="text-center">Property Registration</h2></div>
 
 				<input type="hidden" name="mode" value="CREATE">
 

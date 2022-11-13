@@ -10,11 +10,12 @@
 </head>
 <body>
 	<!-- Responsive navbar-->
-	<c:import url="common/navbar.jsp"></c:import>
+	<c:import url="common/navbar.jsp"></c:import><br>
 
 	<div class="section">
 		<!-- Page content-->
 		<div class="container mt-5">
+			<div><h2 class="text-center">Registered Property Lists</h2></div>
 			<table id="property" class="table table-striped">
 				<thead>
 					<tr>
