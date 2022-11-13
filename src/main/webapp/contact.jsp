@@ -88,7 +88,7 @@
 
 							<div class="col-12">
 								<input type="submit" value="Send Message"
-									class="btn btn-primary" />
+									class="btn btn-primary" onclick="showMessage()"/>
 							</div>
 						</div>
 					</form>
@@ -97,6 +97,13 @@
 		</div>
 	</div>
 	<!-- /.untree_co-section -->
+	<script>
+	function showMessage(){
+		var myText = "Thanks you! For your Suggesstion.";
+	    alert (myText);
+	}
+	
+	</script>
 
 	<!-- Footer Java Script -->
 	<c:import url="common/footer.html"></c:import>
